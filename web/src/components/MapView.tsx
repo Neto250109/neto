@@ -10,6 +10,14 @@ export interface MapDatum {
   codigo: string;
   valor: number | null;
   tooltip: string;
+  /** Cor já resolvida (ex.: classificação categórica). Quando ausente, a cor é
+   * calculada a partir de `valor` numa escala sequencial contínua. */
+  cor?: string;
+}
+
+export interface LegendItem {
+  color: string;
+  label: string;
 }
 
 let geoCache: FeatureCollection | null = null;
@@ -36,6 +44,7 @@ export default function MapView({
   legendTitle = "IDEB",
   legendMin = 0,
   legendMax = 10,
+  legendItems,
 }: {
   dados: Map<string, MapDatum>;
   onClickMunicipio?: (codigo: string) => void;
@@ -44,6 +53,8 @@ export default function MapView({
   legendTitle?: string;
   legendMin?: number;
   legendMax?: number;
+  /** Quando fornecido, mostra legenda categórica (swatches) em vez do gradiente contínuo. */
+  legendItems?: LegendItem[];
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
@@ -137,7 +148,7 @@ export default function MapView({
       for (const feat of geo.features) {
         const id = String((feat.properties as Record<string, unknown>)?.id ?? feat.id);
         const datum = dados.get(id);
-        const cor = datum && datum.valor !== null ? colorFor(datum.valor, legendMin, legendMax) : "#d8dcd8";
+        const cor = datum?.cor ?? (datum && datum.valor !== null ? colorFor(datum.valor, legendMin, legendMax) : "#d8dcd8");
         map.setFeatureState({ source: "municipios", id }, { cor });
       }
     });
@@ -176,11 +187,22 @@ export default function MapView({
         style={{ position: "absolute", bottom: 10, left: 10, padding: "8px 10px", fontSize: 11.5, zIndex: 5 }}
       >
         <div style={{ marginBottom: 4, fontWeight: 600 }}>{legendTitle}</div>
-        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <span>{legendMin.toFixed(1)}</span>
-          <div style={{ width: 110, height: 8, borderRadius: 4, background: `linear-gradient(90deg, ${SEQUENTIAL_BLUE.join(",")})` }} />
-          <span>{legendMax.toFixed(1)}</span>
-        </div>
+        {legendItems ? (
+          <div style={{ display: "grid", gap: 3 }}>
+            {legendItems.map((it) => (
+              <div key={it.label} style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <span style={{ width: 10, height: 10, borderRadius: 3, background: it.color, display: "inline-block" }} />
+                <span>{it.label}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <span>{legendMin.toFixed(1)}</span>
+            <div style={{ width: 110, height: 8, borderRadius: 4, background: `linear-gradient(90deg, ${SEQUENTIAL_BLUE.join(",")})` }} />
+            <span>{legendMax.toFixed(1)}</span>
+          </div>
+        )}
         <div className="muted" style={{ marginTop: 3 }}>
           cinza = sem dado disponível
         </div>

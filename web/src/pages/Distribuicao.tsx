@@ -6,7 +6,25 @@ import { ETAPAS, REDES, REGIOES } from "../types";
 import { describe } from "../lib/stats";
 import HistogramChart from "../components/charts/HistogramChart";
 import BoxplotChart from "../components/charts/BoxplotChart";
-import { fmtInt, fmtNum } from "../lib/format";
+import BarRankChart from "../components/charts/BarRankChart";
+import DataTable from "../components/DataTable";
+import { fmtInt, fmtNum, fmtPct } from "../lib/format";
+
+const FAIXAS: { label: string; min: number; max: number }[] = [
+  { label: "< 3,0", min: -Infinity, max: 3 },
+  { label: "3,0 – 4,0", min: 3, max: 4 },
+  { label: "4,0 – 5,0", min: 4, max: 5 },
+  { label: "5,0 – 6,0", min: 5, max: 6 },
+  { label: "6,0 – 7,0", min: 6, max: 7 },
+  { label: "> 7,0", min: 7, max: Infinity },
+];
+
+function contarFaixas(valores: number[]) {
+  return FAIXAS.map((f) => ({
+    ...f,
+    n: valores.filter((v) => v >= f.min && v < f.max).length,
+  }));
+}
 
 export default function Distribuicao() {
   const { meta } = useDataStore();
@@ -29,6 +47,7 @@ export default function Distribuicao() {
   }));
 
   const grupos = agrupar === "uf" ? gruposUf : gruposRegiao;
+  const faixas = useMemo(() => contarFaixas(valores), [valores]);
 
   return (
     <div>
@@ -83,9 +102,31 @@ export default function Distribuicao() {
         </div>
       </div>
 
+      <div className="grid chart-grid-2" style={{ marginBottom: 16 }}>
+        <div className="card">
+          <h3>Histograma — IDEB 2025 ({etapa}, {rede})</h3>
+          <HistogramChart values={valores} />
+        </div>
+        <div className="card">
+          <h3>Distribuição dos municípios por faixa de IDEB</h3>
+          <p className="muted" style={{ fontSize: 12, marginBottom: 10 }}>
+            Permite interpretar a estrutura territorial do desempenho educacional, não apenas o ranking individual.
+          </p>
+          <BarRankChart categorias={faixas.map((f) => f.label)} valores={faixas.map((f) => f.n)} horizontal={false} valueFmt={(v) => `${v} município(s)`} />
+        </div>
+      </div>
+
       <div className="card" style={{ marginBottom: 16 }}>
-        <h3>Histograma — IDEB 2025 ({etapa}, {rede})</h3>
-        <HistogramChart values={valores} />
+        <DataTable
+          columns={[
+            { key: "label", label: "Faixa de IDEB" },
+            { key: "n", label: "Municípios", align: "right", value: (f) => f.n, render: (f) => fmtInt(f.n) },
+            { key: "pct", label: "% do total", align: "right", value: (f) => (stats.n ? (f.n / stats.n) * 100 : 0), render: (f) => fmtPct(stats.n ? (f.n / stats.n) * 100 : 0, 1) },
+          ]}
+          rows={faixas}
+          pageSize={6}
+          exportFilename={`faixas_ideb_${etapa}_${rede}`}
+        />
       </div>
 
       <div className="card">

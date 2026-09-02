@@ -1,8 +1,47 @@
+import { useDataStore } from "../lib/dataStore";
+import { ETAPAS } from "../types";
+import { fmtInt } from "../lib/format";
+
 export default function Metodologia() {
+  const { meta } = useDataStore();
   return (
     <div style={{ maxWidth: 880 }}>
       <h1 className="page-title">Metodologia</h1>
       <p className="page-subtitle">Fontes, tratamento dos dados, modelagem, indicadores e limitações deste painel.</p>
+
+      <div className="card" style={{ marginBottom: 16 }}>
+        <h3>Sobre os dados</h3>
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12, fontSize: 13 }}>
+          <div>
+            <div className="muted" style={{ fontSize: 11 }}>Fonte</div>
+            <div>INEP/MEC — IDEB 2025</div>
+          </div>
+          <div>
+            <div className="muted" style={{ fontSize: 11 }}>Unidade espacial</div>
+            <div>Município</div>
+          </div>
+          <div>
+            <div className="muted" style={{ fontSize: 11 }}>Município mais recente</div>
+            <div>2025</div>
+          </div>
+          <div>
+            <div className="muted" style={{ fontSize: 11 }}>Número de municípios</div>
+            <div className="tabular">{meta ? fmtInt(meta.total_municipios) : "—"}</div>
+          </div>
+          <div>
+            <div className="muted" style={{ fontSize: 11 }}>Etapas</div>
+            <div>{ETAPAS.join(" · ")}</div>
+          </div>
+          <div>
+            <div className="muted" style={{ fontSize: 11 }}>Data de geração dos dados</div>
+            <div>{meta ? new Date(meta.gerado_em).toLocaleString("pt-BR") : "—"}</div>
+          </div>
+        </div>
+        <p style={{ fontSize: 13, lineHeight: 1.6, marginTop: 12 }}>
+          <b>Critérios de exclusão:</b> nenhum município é excluído do painel. Um município sem determinada rede, etapa ou ano simplesmente não possui dado
+          disponível naquela combinação — a ausência é sempre exibida como tal ("Não avaliado" / "Não divulgado"), nunca omitida ou tratada como zero.
+        </p>
+      </div>
 
       <div className="card" style={{ marginBottom: 16 }}>
         <h3>Fonte</h3>

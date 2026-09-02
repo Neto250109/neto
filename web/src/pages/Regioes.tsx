@@ -8,6 +8,8 @@ import { describe } from "../lib/stats";
 import { fmtDelta, fmtInt, fmtNum, fmtPct } from "../lib/format";
 import DataTable from "../components/DataTable";
 import { catColor } from "../lib/colors";
+import InsightBox from "../components/InsightBox";
+import { insightRankingTerritorial, insightDispersaoTerritorial } from "../lib/insights";
 
 export default function Regioes() {
   const { meta } = useDataStore();
@@ -53,6 +55,19 @@ export default function Regioes() {
         </select>
         {loading && <span className="muted">carregando…</span>}
       </div>
+
+      <InsightBox
+        texts={[
+          insightRankingTerritorial(
+            porRegiao.map((p) => ({ nome: p.regiao, stats: p.stats })),
+            "regiões",
+          ),
+          insightDispersaoTerritorial(
+            porRegiao.map((p) => ({ nome: p.regiao, stats: p.stats })),
+            "regiões",
+          ),
+        ]}
+      />
 
       <div className="grid kpi-grid" style={{ marginBottom: 20 }}>
         {porRegiao.map((p, i) => (

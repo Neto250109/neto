@@ -7,6 +7,8 @@ import { ETAPAS, REDES } from "../types";
 import { describe } from "../lib/stats";
 import { fmtDelta, fmtInt, fmtNum, fmtPct } from "../lib/format";
 import DataTable from "../components/DataTable";
+import InsightBox from "../components/InsightBox";
+import { insightRankingTerritorial, insightDispersaoTerritorial } from "../lib/insights";
 
 export default function Estados() {
   const { meta } = useDataStore();
@@ -61,6 +63,19 @@ export default function Estados() {
         </select>
         {loading && <span className="muted">carregando…</span>}
       </div>
+
+      <InsightBox
+        texts={[
+          insightRankingTerritorial(
+            porUf.map((p) => ({ nome: `${p.uf_nome} (${p.uf})`, stats: p.stats })),
+            "UFs",
+          ),
+          insightDispersaoTerritorial(
+            porUf.map((p) => ({ nome: `${p.uf_nome} (${p.uf})`, stats: p.stats })),
+            "UFs",
+          ),
+        ]}
+      />
 
       <div className="card">
         <DataTable

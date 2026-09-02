@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDataStore } from "../lib/dataStore";
 import { useEtapaRows, valorNoAno, ultimoDisponivel } from "../lib/useEtapaRows";
+import { computeRankings } from "../lib/rankings";
 import type { Etapa, Rede } from "../types";
 import { ETAPAS, REDES } from "../types";
 import KpiCard from "../components/KpiCard";
@@ -12,13 +13,13 @@ import { catColor } from "../lib/colors";
 
 function usePainelEtapa(etapa: Etapa, codigo: string | undefined) {
   const { rows, loading } = useEtapaRows(etapa);
-  return { rows: rows.filter((r) => r.codigo === codigo), loading };
+  return { allRows: rows, rows: rows.filter((r) => r.codigo === codigo), loading };
 }
 
 export default function PerfilMunicipal() {
   const { codigo } = useParams();
   const navigate = useNavigate();
-  const { municipios } = useDataStore();
+  const { municipios, meta, seriesAgregadas } = useDataStore();
   const [etapa, setEtapa] = useState<Etapa>("Anos Iniciais");
   const [rede, setRede] = useState<Rede>("Pública");
 
@@ -37,6 +38,12 @@ export default function PerfilMunicipal() {
   const ultMeta = linhaRede ? ultimoDisponivel(linhaRede, "meta") : null;
   const obsNaMeta = linhaRede && ultMeta ? valorNoAno(linhaRede, "ideb", ultMeta.ano) : null;
   const diffMeta = ultMeta && obsNaMeta !== null ? obsNaMeta - ultMeta.valor : null;
+
+  const posicao = useMemo(() => {
+    if (!codigo || !atual.allRows.length) return null;
+    const rankings = computeRankings(atual.allRows.filter((r) => r.rede === rede), 2025);
+    return rankings.get(codigo) ?? null;
+  }, [atual.allRows, rede, codigo]);
 
   const componentesAno = useMemo(() => {
     if (!linhaRede) return null;
@@ -60,6 +67,20 @@ export default function PerfilMunicipal() {
     const row = porEtapa[e].rows.find((x) => x.rede === rede);
     return { etapa: e, v: row ? valorNoAno(row, "ideb", 2025) : null };
   });
+
+  const seriesComparativas = useMemo(() => {
+    if (!linhaRede || !dim) return [];
+    const anos = linhaRede.anos;
+    const brasil = seriesAgregadas?.Brasil?.[etapa]?.ideb?.[rede];
+    const regiaoS = seriesAgregadas?.Regiao?.[etapa]?.ideb?.[dim.regiao]?.[rede];
+    const ufS = seriesAgregadas?.UF?.[etapa]?.ideb?.[dim.uf]?.[rede];
+    return [
+      { name: dim.nome, data: linhaRede.ideb },
+      { name: dim.uf, data: anos.map((a) => ufS?.[String(a)]?.media ?? null) },
+      { name: dim.regiao, data: anos.map((a) => regiaoS?.[String(a)]?.media ?? null) },
+      { name: "Brasil", data: anos.map((a) => brasil?.[String(a)]?.media ?? null) },
+    ];
+  }, [linhaRede, dim, seriesAgregadas, etapa, rede]);
 
   if (!dim) {
     return (
@@ -112,14 +133,28 @@ export default function PerfilMunicipal() {
             <KpiCard label="Variação 2023→2025" value={fmtDelta(deltaAbs, 2)} deltaGood={deltaAbs !== null ? deltaAbs >= 0 : null} />
             <KpiCard label={`Meta (${ultMeta?.ano ?? "—"})`} value={fmtNum(ultMeta?.valor ?? null, 2)} />
             <KpiCard label="Diferença da meta" value={fmtDelta(diffMeta, 2)} deltaGood={diffMeta !== null ? diffMeta >= 0 : null} sub={ultMeta ? `observado em ${ultMeta.ano}` : ""} />
+            <KpiCard
+              label="Ranking estadual"
+              value={posicao ? `${posicao.rankEstadual}º` : "ND"}
+              sub={posicao ? `de ${posicao.totalEstadual} municípios (${dim.uf})` : "IDEB 2025 indisponível"}
+              accent="var(--status-good)"
+            />
+            <KpiCard
+              label="Ranking nacional"
+              value={posicao ? `${posicao.rankNacional}º` : "ND"}
+              sub={posicao ? `de ${posicao.totalNacional} municípios (Brasil)` : "IDEB 2025 indisponível"}
+            />
           </div>
 
           <div className="grid chart-grid-2" style={{ marginBottom: 20 }}>
             <div className="card">
               <h3>
-                Evolução histórica — IDEB ({etapa}, {rede})
+                {dim.nome} × {dim.uf} × {dim.regiao} × Brasil — IDEB ({etapa}, {rede})
               </h3>
-              <LineSeriesChart categorias={linhaRede.anos} series={[{ name: "IDEB", data: linhaRede.ideb }, { name: "Meta", data: linhaRede.meta }]} />
+              <p className="muted" style={{ fontSize: 12, marginBottom: 10 }}>
+                Comparação da evolução histórica do município com as médias estadual, regional e nacional.
+              </p>
+              <LineSeriesChart categorias={linhaRede.anos} series={seriesComparativas} />
             </div>
             <div className="card">
               <h3>Componentes do IDEB — 2025</h3>
@@ -137,6 +172,7 @@ export default function PerfilMunicipal() {
               ) : (
                 <p className="muted">Sem componentes disponíveis para 2025.</p>
               )}
+              <p className="muted" style={{ fontSize: 11, marginTop: 12 }}>{meta?.fonte}</p>
             </div>
           </div>
 

@@ -2,10 +2,11 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEtapaRows, valorNoAno, ultimoDisponivel } from "../lib/useEtapaRows";
 import { useDataStore } from "../lib/dataStore";
+import { computeRankings } from "../lib/rankings";
 import type { Etapa, Rede } from "../types";
 import { ETAPAS, REDES } from "../types";
 import DataTable, { type Column } from "../components/DataTable";
-import { fmtDelta, fmtNum } from "../lib/format";
+import { fmtDelta, fmtInt, fmtNum } from "../lib/format";
 
 type Ordenacao = "ideb_desc" | "ideb_asc" | "crescimento_desc" | "meta_diff_desc";
 
@@ -18,7 +19,11 @@ export default function Ranking() {
   const [uf, setUf] = useState("");
   const [ordenacao, setOrdenacao] = useState<Ordenacao>("ideb_desc");
   const [limite, setLimite] = useState<10 | 20 | 50 | 0>(50);
+  const [faixaMin, setFaixaMin] = useState<number | "">("");
+  const [faixaMax, setFaixaMax] = useState<number | "">("");
   const { rows, loading } = useEtapaRows(etapa);
+
+  const rankings = useMemo(() => computeRankings(rows.filter((r) => r.rede === rede), 2025), [rows, rede]);
 
   const enriched = useMemo(() => {
     return rows
@@ -32,9 +37,11 @@ export default function Ranking() {
         const ultMeta = ultimoDisponivel(r, "meta");
         const obsNaMeta = ultMeta ? valorNoAno(r, "ideb", ultMeta.ano) : null;
         const diffMeta = ultMeta && obsNaMeta !== null ? obsNaMeta - ultMeta.valor : null;
-        return { row: r, ideb2025, ideb2023, cresc, diffMeta, anoMeta: ultMeta?.ano ?? null, metaValor: ultMeta?.valor ?? null };
-      });
-  }, [rows, rede, regiao, uf]);
+        return { row: r, ideb2025, ideb2023, cresc, diffMeta, anoMeta: ultMeta?.ano ?? null, metaValor: ultMeta?.valor ?? null, pos: rankings.get(r.codigo) ?? null };
+      })
+      .filter((r) => faixaMin === "" || (r.ideb2025 !== null && r.ideb2025 >= faixaMin))
+      .filter((r) => faixaMax === "" || (r.ideb2025 !== null && r.ideb2025 <= faixaMax));
+  }, [rows, rede, regiao, uf, rankings, faixaMin, faixaMax]);
 
   const sorted = useMemo(() => {
     const arr = [...enriched];
@@ -61,6 +68,8 @@ export default function Ranking() {
     { key: "uf", label: "UF", render: (r) => r.row.uf, width: 56 },
     { key: "regiao", label: "Região", render: (r) => r.row.regiao },
     { key: "ideb2025", label: "IDEB 2025", align: "right", value: (r) => r.ideb2025, render: (r) => fmtNum(r.ideb2025, 1) },
+    { key: "posEstado", label: "Pos. estado", align: "right", value: (r) => r.pos?.rankEstadual ?? null, render: (r) => (r.pos ? `${fmtInt(r.pos.rankEstadual)}/${fmtInt(r.pos.totalEstadual)}` : "ND") },
+    { key: "posBrasil", label: "Pos. Brasil", align: "right", value: (r) => r.pos?.rankNacional ?? null, render: (r) => (r.pos ? `${fmtInt(r.pos.rankNacional)}/${fmtInt(r.pos.totalNacional)}` : "ND") },
     { key: "cresc", label: "Δ 2023→2025", align: "right", value: (r) => r.cresc, render: (r) => fmtDelta(r.cresc, 2) },
     { key: "meta", label: `Meta (${enriched[0]?.anoMeta ?? "—"})`, align: "right", value: (r) => r.metaValor, render: (r) => fmtNum(r.metaValor, 2) },
     { key: "diffMeta", label: "Dif. da meta", align: "right", value: (r) => r.diffMeta, render: (r) => fmtDelta(r.diffMeta, 2) },
@@ -102,6 +111,10 @@ export default function Ranking() {
           <option value="crescimento_desc">Maior crescimento (2023→2025)</option>
           <option value="meta_diff_desc">Maior diferença para a meta</option>
         </select>
+        <span className="pill-label">Faixa de IDEB:</span>
+        <input type="number" step={0.1} placeholder="mín." value={faixaMin} onChange={(e) => setFaixaMin(e.target.value === "" ? "" : Number(e.target.value))} style={{ width: 68 }} />
+        <span className="muted">a</span>
+        <input type="number" step={0.1} placeholder="máx." value={faixaMax} onChange={(e) => setFaixaMax(e.target.value === "" ? "" : Number(e.target.value))} style={{ width: 68 }} />
         <div style={{ display: "flex", gap: 4, marginLeft: "auto" }}>
           {([10, 20, 50, 0] as const).map((n) => (
             <button key={n} className="btn" onClick={() => setLimite(n)} style={{ background: limite === n ? "#2a78d6" : undefined, color: limite === n ? "#fff" : undefined }}>
@@ -120,7 +133,7 @@ export default function Ranking() {
           pageSize={20}
           exportFilename={`ranking_${etapa}_${rede}`}
           onRowClick={(r) => navigate(`/municipio/${r.row.codigo}`)}
-          csvRows={(rs) => rs.map((r) => ({ municipio: r.row.nome, uf: r.row.uf, regiao: r.row.regiao, rede, etapa, ideb_2025: r.ideb2025, ideb_2023: r.ideb2023, variacao: r.cresc, meta: r.metaValor, ano_meta: r.anoMeta, diferenca_meta: r.diffMeta }))}
+          csvRows={(rs) => rs.map((r) => ({ municipio: r.row.nome, uf: r.row.uf, regiao: r.row.regiao, rede, etapa, ideb_2025: r.ideb2025, ideb_2023: r.ideb2023, variacao: r.cresc, meta: r.metaValor, ano_meta: r.anoMeta, diferenca_meta: r.diffMeta, posicao_estadual: r.pos?.rankEstadual ?? null, total_estadual: r.pos?.totalEstadual ?? null, posicao_nacional: r.pos?.rankNacional ?? null, total_nacional: r.pos?.totalNacional ?? null }))}
         />
       </div>
 

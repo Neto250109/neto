@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useDataStore } from "../lib/dataStore";
 import { useEtapaRows, valorNoAno, ultimoDisponivel } from "../lib/useEtapaRows";
 import type { Etapa, Rede } from "../types";
-import { ETAPAS, REDES } from "../types";
+import { ETAPAS, REDES, REGIOES } from "../types";
 import KpiCard from "../components/KpiCard";
 import LineSeriesChart from "../components/charts/LineSeriesChart";
 import BarRankChart from "../components/charts/BarRankChart";
 import HistogramChart from "../components/charts/HistogramChart";
 import MapView, { type MapDatum } from "../components/MapView";
 import DataTable from "../components/DataTable";
+import InsightBox from "../components/InsightBox";
+import { insightEvolucao, insightMeta, insightRankingTerritorial } from "../lib/insights";
+import { describe } from "../lib/stats";
 import { fmtDelta, fmtNum, fmtPct, fmtInt } from "../lib/format";
 import { catColor } from "../lib/colors";
 
@@ -149,6 +152,20 @@ export default function VisaoGeral() {
           sub={`${fmtInt(metaComparacoes.length - acimaMeta)} de ${fmtInt(metaComparacoes.length)} (meta ${anoMetaRef ?? "—"})`}
         />
       </div>
+
+      <InsightBox
+        texts={[
+          insightEvolucao(mediaAtual, media2023, 2025, 2023),
+          insightMeta(acimaMeta, metaComparacoes.length, anoMetaRef ?? null),
+          insightRankingTerritorial(
+            REGIOES.map((g) => ({
+              nome: g,
+              stats: describe(redeRows.filter((r) => r.regiao === g).map((r) => valorNoAno(r, "ideb", 2025))),
+            })),
+            "regiões",
+          ),
+        ]}
+      />
 
       <div className="grid chart-grid-2" style={{ marginBottom: 20 }}>
         <div className="card">
