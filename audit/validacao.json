@@ -1,0 +1,320 @@
+{
+  "duplicidades": {
+    "combinacoes_duplicadas": 0,
+    "exemplos": []
+  },
+  "municipios": {
+    "total_distintos_uniao_3_arquivos": 5571,
+    "codigos_ibge_invalidos_formato": 0
+  },
+  "redes": [
+    "Estadual",
+    "Federal",
+    "Municipal",
+    "Pública"
+  ],
+  "anos_por_etapa": {
+    "Anos Iniciais": [
+      2005,
+      2007,
+      2009,
+      2011,
+      2013,
+      2015,
+      2017,
+      2019,
+      2021,
+      2023,
+      2025
+    ],
+    "Anos Finais": [
+      2005,
+      2007,
+      2009,
+      2011,
+      2013,
+      2015,
+      2017,
+      2019,
+      2021,
+      2023,
+      2025
+    ],
+    "Ensino Médio": [
+      2017,
+      2019,
+      2021,
+      2023,
+      2025
+    ]
+  },
+  "indicadores": [
+    "IDEB",
+    "Indicador de Rendimento",
+    "Meta IDEB",
+    "Nota Média Padronizada",
+    "Nota SAEB - Língua Portuguesa",
+    "Nota SAEB - Matemática",
+    "Taxa de Aprovação"
+  ],
+  "valores_fora_do_intervalo_esperado": {
+    "IDEB": {
+      "n_fora_da_faixa": 0,
+      "faixa_esperada": [
+        0,
+        10
+      ]
+    },
+    "Meta IDEB": {
+      "n_fora_da_faixa": 0,
+      "faixa_esperada": [
+        0,
+        10
+      ]
+    },
+    "Indicador de Rendimento": {
+      "n_fora_da_faixa": 0,
+      "faixa_esperada": [
+        0,
+        1.0001
+      ]
+    },
+    "Taxa de Aprovação": {
+      "n_fora_da_faixa": 0,
+      "faixa_esperada": [
+        0,
+        100.0001
+      ]
+    },
+    "Nota SAEB - Matemática": {
+      "n_fora_da_faixa": 0,
+      "faixa_esperada": [
+        0,
+        500
+      ]
+    },
+    "Nota SAEB - Língua Portuguesa": {
+      "n_fora_da_faixa": 0,
+      "faixa_esperada": [
+        0,
+        500
+      ]
+    },
+    "Nota Média Padronizada": {
+      "n_fora_da_faixa": 0,
+      "faixa_esperada": [
+        0,
+        10.0001
+      ]
+    }
+  },
+  "municipios_sem_todas_as_redes": {
+    "combinacoes_municipio_etapa_com_rede_faltante": 16634,
+    "observacao": "Uma rede pode legitimamente não existir num município (ex.: sem rede Federal ou Estadual atuando ali); não é erro, é reflexo da oferta educacional real."
+  },
+  "municipios_ideb_10": {
+    "registros_encontrados": 18,
+    "municipios_distintos": [
+      "Catunda",
+      "Coreaú",
+      "Coruripe",
+      "Cruz",
+      "Pedra Branca",
+      "Pires Ferreira",
+      "Santana do Mundaú",
+      "União dos Palmares"
+    ],
+    "detalhe": [
+      {
+        "municipio": "Catunda",
+        "uf": "CE",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Catunda",
+        "uf": "CE",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Coreaú",
+        "uf": "CE",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Coreaú",
+        "uf": "CE",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Coruripe",
+        "uf": "AL",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Coruripe",
+        "uf": "AL",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Cruz",
+        "uf": "CE",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Cruz",
+        "uf": "CE",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Pedra Branca",
+        "uf": "CE",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Pedra Branca",
+        "uf": "CE",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Pires Ferreira",
+        "uf": "CE",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2023,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Pires Ferreira",
+        "uf": "CE",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2023,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Pires Ferreira",
+        "uf": "CE",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Pires Ferreira",
+        "uf": "CE",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Santana do Mundaú",
+        "uf": "AL",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "Santana do Mundaú",
+        "uf": "AL",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "União dos Palmares",
+        "uf": "AL",
+        "rede": "Municipal",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      },
+      {
+        "municipio": "União dos Palmares",
+        "uf": "AL",
+        "rede": "Pública",
+        "etapa": "Anos Iniciais",
+        "ano": 2025,
+        "valor": 10.0
+      }
+    ],
+    "referencia_validacao": [
+      "Catunda",
+      "Cruz",
+      "Pires Ferreira",
+      "Santana do Mundaú",
+      "Coruripe"
+    ],
+    "todos_da_referencia_encontrados": true
+  },
+  "validacao_nacional_2025": {
+    "Anos Iniciais": {
+      "media_simples_municipios_rede_publica_2025": 6.222,
+      "n_municipios_considerados": 5478,
+      "valor_referencia_divulgacao_oficial": 6.222,
+      "observacao": "A média simples entre municípios NÃO é igual ao indicador nacional oficial (que é ponderado por matrículas); usada apenas como checagem de integração dos dados, não como o KPI nacional exibido no BI."
+    },
+    "Anos Finais": {
+      "media_simples_municipios_rede_publica_2025": 5.115,
+      "n_municipios_considerados": 5491,
+      "valor_referencia_divulgacao_oficial": 5.115,
+      "observacao": "A média simples entre municípios NÃO é igual ao indicador nacional oficial (que é ponderado por matrículas); usada apenas como checagem de integração dos dados, não como o KPI nacional exibido no BI."
+    },
+    "Ensino Médio": {
+      "media_simples_municipios_rede_publica_2025": 4.469,
+      "n_municipios_considerados": 5428,
+      "valor_referencia_divulgacao_oficial": 4.469,
+      "observacao": "A média simples entre municípios NÃO é igual ao indicador nacional oficial (que é ponderado por matrículas); usada apenas como checagem de integração dos dados, não como o KPI nacional exibido no BI."
+    }
+  },
+  "consistencia_entre_arquivos": {
+    "em_AI_nao_em_AF": 1,
+    "em_AF_nao_em_AI": 1,
+    "em_AI_ou_AF_nao_em_EM": 8
+  },
+  "cobertura_geometria_mapa": {
+    "municipios_com_geometria": 5564,
+    "municipios_dados_sem_geometria": [
+      1504752,
+      2206720,
+      4212650,
+      4220000,
+      4314548,
+      5006275,
+      5101837
+    ],
+    "total_municipios_dados_sem_geometria": 7
+  }
+}

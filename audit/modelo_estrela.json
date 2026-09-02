@@ -1,0 +1,66 @@
+{
+  "fato_ideb_registros": 2516884,
+  "dim_municipio_linhas": 5571,
+  "dim_rede_linhas": 4,
+  "dim_etapa": [
+    {
+      "etapa": "Anos Iniciais",
+      "primeiro_ano_disponivel": 2005,
+      "ultimo_ano_disponivel": 2025
+    },
+    {
+      "etapa": "Anos Finais",
+      "primeiro_ano_disponivel": 2005,
+      "ultimo_ano_disponivel": 2025
+    },
+    {
+      "etapa": "Ensino Médio",
+      "primeiro_ano_disponivel": 2017,
+      "ultimo_ano_disponivel": 2025
+    }
+  ],
+  "dim_tempo_anos": [
+    2005,
+    2007,
+    2009,
+    2011,
+    2013,
+    2015,
+    2017,
+    2019,
+    2021,
+    2023,
+    2025
+  ],
+  "dim_indicador_linhas": [
+    {
+      "indicador": "IDEB",
+      "grupo": "Resultado"
+    },
+    {
+      "indicador": "Indicador de Rendimento",
+      "grupo": "Rendimento"
+    },
+    {
+      "indicador": "Meta IDEB",
+      "grupo": "Meta"
+    },
+    {
+      "indicador": "Nota Média Padronizada",
+      "grupo": "Desempenho SAEB"
+    },
+    {
+      "indicador": "Nota SAEB - Língua Portuguesa",
+      "grupo": "Desempenho SAEB"
+    },
+    {
+      "indicador": "Nota SAEB - Matemática",
+      "grupo": "Desempenho SAEB"
+    },
+    {
+      "indicador": "Taxa de Aprovação",
+      "grupo": "Rendimento"
+    }
+  ],
+  "municipios_sem_regiao_mapeada": 0
+}

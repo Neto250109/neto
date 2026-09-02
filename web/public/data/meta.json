@@ -1,0 +1,241 @@
+{
+  "titulo": "Painel Nacional — IDEB 2025",
+  "fonte": "Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira — INEP/MEC. Divulgação do IDEB 2025.",
+  "gerado_em": "2026-09-01T20:03:48.635839+00:00",
+  "etapas": {
+    "Anos Iniciais": {
+      "slug": "anos_iniciais",
+      "primeiro_ano": 2005,
+      "ultimo_ano": 2025,
+      "anos": [
+        2005,
+        2007,
+        2009,
+        2011,
+        2013,
+        2015,
+        2017,
+        2019,
+        2021,
+        2023,
+        2025
+      ]
+    },
+    "Anos Finais": {
+      "slug": "anos_finais",
+      "primeiro_ano": 2005,
+      "ultimo_ano": 2025,
+      "anos": [
+        2005,
+        2007,
+        2009,
+        2011,
+        2013,
+        2015,
+        2017,
+        2019,
+        2021,
+        2023,
+        2025
+      ]
+    },
+    "Ensino Médio": {
+      "slug": "ensino_medio",
+      "primeiro_ano": 2017,
+      "ultimo_ano": 2025,
+      "anos": [
+        2017,
+        2019,
+        2021,
+        2023,
+        2025
+      ]
+    }
+  },
+  "redes": [
+    "Pública",
+    "Municipal",
+    "Estadual",
+    "Federal"
+  ],
+  "indicadores": [
+    {
+      "indicador": "IDEB",
+      "grupo": "Resultado"
+    },
+    {
+      "indicador": "Indicador de Rendimento",
+      "grupo": "Rendimento"
+    },
+    {
+      "indicador": "Meta IDEB",
+      "grupo": "Meta"
+    },
+    {
+      "indicador": "Nota Média Padronizada",
+      "grupo": "Desempenho SAEB"
+    },
+    {
+      "indicador": "Nota SAEB - Língua Portuguesa",
+      "grupo": "Desempenho SAEB"
+    },
+    {
+      "indicador": "Nota SAEB - Matemática",
+      "grupo": "Desempenho SAEB"
+    },
+    {
+      "indicador": "Taxa de Aprovação",
+      "grupo": "Rendimento"
+    }
+  ],
+  "regioes": [
+    "Centro-Oeste",
+    "Nordeste",
+    "Norte",
+    "Sudeste",
+    "Sul"
+  ],
+  "ufs": [
+    {
+      "uf": "AC",
+      "uf_nome": "Acre",
+      "regiao": "Norte"
+    },
+    {
+      "uf": "AL",
+      "uf_nome": "Alagoas",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "AM",
+      "uf_nome": "Amazonas",
+      "regiao": "Norte"
+    },
+    {
+      "uf": "AP",
+      "uf_nome": "Amapá",
+      "regiao": "Norte"
+    },
+    {
+      "uf": "BA",
+      "uf_nome": "Bahia",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "CE",
+      "uf_nome": "Ceará",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "DF",
+      "uf_nome": "Distrito Federal",
+      "regiao": "Centro-Oeste"
+    },
+    {
+      "uf": "ES",
+      "uf_nome": "Espírito Santo",
+      "regiao": "Sudeste"
+    },
+    {
+      "uf": "GO",
+      "uf_nome": "Goiás",
+      "regiao": "Centro-Oeste"
+    },
+    {
+      "uf": "MA",
+      "uf_nome": "Maranhão",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "MG",
+      "uf_nome": "Minas Gerais",
+      "regiao": "Sudeste"
+    },
+    {
+      "uf": "MS",
+      "uf_nome": "Mato Grosso do Sul",
+      "regiao": "Centro-Oeste"
+    },
+    {
+      "uf": "MT",
+      "uf_nome": "Mato Grosso",
+      "regiao": "Centro-Oeste"
+    },
+    {
+      "uf": "PA",
+      "uf_nome": "Pará",
+      "regiao": "Norte"
+    },
+    {
+      "uf": "PB",
+      "uf_nome": "Paraíba",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "PE",
+      "uf_nome": "Pernambuco",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "PI",
+      "uf_nome": "Piauí",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "PR",
+      "uf_nome": "Paraná",
+      "regiao": "Sul"
+    },
+    {
+      "uf": "RJ",
+      "uf_nome": "Rio de Janeiro",
+      "regiao": "Sudeste"
+    },
+    {
+      "uf": "RN",
+      "uf_nome": "Rio Grande do Norte",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "RO",
+      "uf_nome": "Rondônia",
+      "regiao": "Norte"
+    },
+    {
+      "uf": "RR",
+      "uf_nome": "Roraima",
+      "regiao": "Norte"
+    },
+    {
+      "uf": "RS",
+      "uf_nome": "Rio Grande do Sul",
+      "regiao": "Sul"
+    },
+    {
+      "uf": "SC",
+      "uf_nome": "Santa Catarina",
+      "regiao": "Sul"
+    },
+    {
+      "uf": "SE",
+      "uf_nome": "Sergipe",
+      "regiao": "Nordeste"
+    },
+    {
+      "uf": "SP",
+      "uf_nome": "São Paulo",
+      "regiao": "Sudeste"
+    },
+    {
+      "uf": "TO",
+      "uf_nome": "Tocantins",
+      "regiao": "Norte"
+    }
+  ],
+  "total_municipios": 5571,
+  "valores_referencia_nacional_2025": {
+    "Anos Iniciais": 6.222,
+    "Anos Finais": 5.115,
+    "Ensino Médio": 4.469
+  }
+}

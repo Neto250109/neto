@@ -1,0 +1,35 @@
+{
+  "Anos Iniciais": {
+    "etapa": "Anos Iniciais",
+    "registros": 1074258,
+    "status_contagem": {
+      "Disponível": 931529,
+      "Não avaliado": 139341,
+      "Não divulgado": 3388
+    },
+    "percentual_disponivel": 86.71,
+    "registros_com_nota_metodologica": 166
+  },
+  "Anos Finais": {
+    "etapa": "Anos Finais",
+    "registros": 1066562,
+    "status_contagem": {
+      "Disponível": 938562,
+      "Não avaliado": 120042,
+      "Não divulgado": 7958
+    },
+    "percentual_disponivel": 88.0,
+    "registros_com_nota_metodologica": 94
+  },
+  "Ensino Médio": {
+    "etapa": "Ensino Médio",
+    "registros": 376064,
+    "status_contagem": {
+      "Disponível": 331831,
+      "Não avaliado": 27549,
+      "Não divulgado": 16684
+    },
+    "percentual_disponivel": 88.24,
+    "registros_com_nota_metodologica": 8
+  }
+}
