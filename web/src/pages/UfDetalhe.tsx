@@ -83,7 +83,7 @@ export default function UfDetalhe() {
       </div>
 
       <div className="grid kpi-grid" style={{ marginBottom: 20 }}>
-        <KpiCard label="IDEB médio estadual" value={fmtNum(stats.media, 3)} accent="#2a78d6" />
+        <KpiCard label="IDEB médio estadual" value={fmtNum(stats.media, 3)} accent="var(--brand)" />
         <KpiCard label="Mediana" value={fmtNum(stats.mediana, 3)} />
         <KpiCard label="Municípios avaliados" value={fmtInt(stats.n)} />
         <KpiCard label="Acima da meta" value={metaCmp.length ? fmtPct((acima / metaCmp.length) * 100, 1) : "ND"} sub={`${acima} de ${metaCmp.length}`} />

@@ -5,14 +5,14 @@ export default function InsightBox({ title = "Insight territorial", texts }: { t
     <div
       className="card"
       style={{
-        borderLeft: "3px solid #2a78d6",
-        background: "color-mix(in srgb, #2a78d6 6%, var(--surface))",
+        borderLeft: "3px solid var(--brand)",
+        background: "color-mix(in srgb, var(--brand) 6%, var(--surface))",
         marginBottom: 20,
       }}
     >
       <div style={{ display: "flex", gap: 8, alignItems: "baseline", marginBottom: 6 }}>
         <span style={{ fontSize: 15 }}>💡</span>
-        <h4 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: ".03em", color: "#2a78d6" }}>{title}</h4>
+        <h4 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: ".03em", color: "var(--brand)" }}>{title}</h4>
       </div>
       <div style={{ display: "grid", gap: 6 }}>
         {validos.map((t, i) => (

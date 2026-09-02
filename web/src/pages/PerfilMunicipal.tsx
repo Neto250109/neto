@@ -109,7 +109,7 @@ export default function PerfilMunicipal() {
       <div className="card" style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
         <span className="pill-label">Etapa:</span>
         {ETAPAS.map((e) => (
-          <button key={e} className="btn" onClick={() => setEtapa(e)} style={{ background: etapa === e ? "#2a78d6" : undefined, color: etapa === e ? "#fff" : undefined }}>
+          <button key={e} className="btn" onClick={() => setEtapa(e)} style={{ background: etapa === e ? "var(--brand)" : undefined, color: etapa === e ? "#fff" : undefined }}>
             {e}
           </button>
         ))}
@@ -117,7 +117,7 @@ export default function PerfilMunicipal() {
           Rede:
         </span>
         {REDES.map((r) => (
-          <button key={r} className="btn" onClick={() => setRede(r)} style={{ background: rede === r ? "#2a78d6" : undefined, color: rede === r ? "#fff" : undefined }}>
+          <button key={r} className="btn" onClick={() => setRede(r)} style={{ background: rede === r ? "var(--brand)" : undefined, color: rede === r ? "#fff" : undefined }}>
             {r}
           </button>
         ))}
@@ -128,7 +128,7 @@ export default function PerfilMunicipal() {
       ) : (
         <>
           <div className="grid kpi-grid" style={{ marginBottom: 20 }}>
-            <KpiCard label="IDEB 2025" value={fmtNum(ideb2025, 1)} accent="#2a78d6" />
+            <KpiCard label="IDEB 2025" value={fmtNum(ideb2025, 1)} accent="var(--brand)" />
             <KpiCard label="IDEB 2023" value={fmtNum(ideb2023, 1)} />
             <KpiCard label="Variação 2023→2025" value={fmtDelta(deltaAbs, 2)} deltaGood={deltaAbs !== null ? deltaAbs >= 0 : null} />
             <KpiCard label={`Meta (${ultMeta?.ano ?? "—"})`} value={fmtNum(ultMeta?.valor ?? null, 2)} />

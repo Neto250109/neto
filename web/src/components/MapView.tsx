@@ -4,7 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import * as topojson from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import type { FeatureCollection } from "geojson";
-import { SEQUENTIAL_BLUE } from "../lib/colors";
+import { SEQUENTIAL_GREEN } from "../lib/colors";
 
 export interface MapDatum {
   codigo: string;
@@ -199,7 +199,7 @@ export default function MapView({
         ) : (
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <span>{legendMin.toFixed(1)}</span>
-            <div style={{ width: 110, height: 8, borderRadius: 4, background: `linear-gradient(90deg, ${SEQUENTIAL_BLUE.join(",")})` }} />
+            <div style={{ width: 110, height: 8, borderRadius: 4, background: `linear-gradient(90deg, ${SEQUENTIAL_GREEN.join(",")})` }} />
             <span>{legendMax.toFixed(1)}</span>
           </div>
         )}
@@ -218,6 +218,6 @@ export default function MapView({
 
 function colorFor(v: number, lo: number, hi: number): string {
   const t = Math.max(0, Math.min(1, (v - lo) / (hi - lo || 1)));
-  const idx = Math.round(t * (SEQUENTIAL_BLUE.length - 1));
-  return SEQUENTIAL_BLUE[idx];
+  const idx = Math.round(t * (SEQUENTIAL_GREEN.length - 1));
+  return SEQUENTIAL_GREEN[idx];
 }

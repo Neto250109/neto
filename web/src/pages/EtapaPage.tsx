@@ -56,7 +56,7 @@ export default function EtapaPage() {
       <div className="card" style={{ display: "flex", gap: 10, marginBottom: 16 }}>
         <span className="pill-label">Rede:</span>
         {REDES.map((r) => (
-          <button key={r} className="btn" onClick={() => setRede(r)} style={{ background: rede === r ? "#2a78d6" : undefined, color: rede === r ? "#fff" : undefined }}>
+          <button key={r} className="btn" onClick={() => setRede(r)} style={{ background: rede === r ? "var(--brand)" : undefined, color: rede === r ? "#fff" : undefined }}>
             {r}
           </button>
         ))}
@@ -64,7 +64,7 @@ export default function EtapaPage() {
       </div>
 
       <div className="grid kpi-grid" style={{ marginBottom: 20 }}>
-        <KpiCard label={`IDEB 2025 (${rede})`} value={fmtNum(media, 3)} accent="#2a78d6" />
+        <KpiCard label={`IDEB 2025 (${rede})`} value={fmtNum(media, 3)} accent="var(--brand)" />
         <KpiCard label="Municípios avaliados" value={fmtInt(valores2025.length)} sub={`de ${fmtInt(redeRows.length)}`} />
         <KpiCard label="Referência oficial 2025" value={fmtNum(meta?.valores_referencia_nacional_2025[etapa] ?? null, 3)} sub="valor nacional divulgado (INEP)" />
       </div>

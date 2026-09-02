@@ -1,6 +1,6 @@
 import type { EChartsOption } from "echarts";
 import Chart from "../Chart";
-import { tokens } from "../../lib/colors";
+import { tokens, brand } from "../../lib/colors";
 
 export function buildBins(values: number[], nBins = 20): { labels: string[]; counts: number[] } {
   if (!values.length) return { labels: [], counts: [] };
@@ -21,6 +21,7 @@ export function buildBins(values: number[], nBins = 20): { labels: string[]; cou
 
 export default function HistogramChart({ values, height = 280, nBins = 20 }: { values: number[]; height?: number; nBins?: number }) {
   const t = tokens();
+  const b = brand();
   const { labels, counts } = buildBins(values, nBins);
   const option: EChartsOption = {
     backgroundColor: "transparent",
@@ -49,7 +50,7 @@ export default function HistogramChart({ values, height = 280, nBins = 20 }: { v
       splitLine: { lineStyle: { color: t.gridline } },
       axisLabel: { color: t.muted, fontSize: 11 },
     },
-    series: [{ type: "bar", data: counts, itemStyle: { color: "#2a78d6", borderRadius: [3, 3, 0, 0] }, barCategoryGap: "8%" }],
+    series: [{ type: "bar", data: counts, itemStyle: { color: b.light, borderRadius: [3, 3, 0, 0] }, barCategoryGap: "8%" }],
   };
   return <Chart option={option} height={height} />;
 }

@@ -117,7 +117,7 @@ export default function Ranking() {
         <input type="number" step={0.1} placeholder="máx." value={faixaMax} onChange={(e) => setFaixaMax(e.target.value === "" ? "" : Number(e.target.value))} style={{ width: 68 }} />
         <div style={{ display: "flex", gap: 4, marginLeft: "auto" }}>
           {([10, 20, 50, 0] as const).map((n) => (
-            <button key={n} className="btn" onClick={() => setLimite(n)} style={{ background: limite === n ? "#2a78d6" : undefined, color: limite === n ? "#fff" : undefined }}>
+            <button key={n} className="btn" onClick={() => setLimite(n)} style={{ background: limite === n ? "var(--brand)" : undefined, color: limite === n ? "#fff" : undefined }}>
               {n === 0 ? "Completo" : `Top ${n}`}
             </button>
           ))}

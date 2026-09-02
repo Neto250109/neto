@@ -2,10 +2,11 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDataStore } from "../lib/dataStore";
 
-const NAV_GROUPS: { title: string; items: { to: string; label: string }[] }[] = [
+const NAV_GROUPS: { title: string; icon?: string; items: { to: string; label: string }[] }[] = [
   { title: "", items: [{ to: "/", label: "Visão Geral" }] },
   {
     title: "Territorial",
+    icon: "🗺️",
     items: [
       { to: "/brasil", label: "Brasil" },
       { to: "/territorio/regioes", label: "Regiões" },
@@ -17,6 +18,7 @@ const NAV_GROUPS: { title: string; items: { to: string; label: string }[] }[] = 
   },
   {
     title: "Etapas de ensino",
+    icon: "📚",
     items: [
       { to: "/etapa/anos_iniciais", label: "Anos Iniciais" },
       { to: "/etapa/anos_finais", label: "Anos Finais" },
@@ -25,6 +27,7 @@ const NAV_GROUPS: { title: string; items: { to: string; label: string }[] }[] = 
   },
   {
     title: "Análises temáticas",
+    icon: "📊",
     items: [
       { to: "/redes", label: "Redes de Ensino" },
       { to: "/ideb-meta", label: "IDEB × Meta" },
@@ -37,6 +40,7 @@ const NAV_GROUPS: { title: string; items: { to: string; label: string }[] }[] = 
   },
   {
     title: "Sistema",
+    icon: "⚙️",
     items: [
       { to: "/qualidade", label: "Qualidade dos Dados" },
       { to: "/metodologia", label: "Metodologia" },
@@ -79,8 +83,20 @@ export default function Layout() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "14px 16px", borderBottom: "1px solid var(--border)" }}>
-          <div style={{ width: 26, height: 26, borderRadius: 7, background: "#2a78d6", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: 13 }}>
-            I
+          <div
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: 8,
+              background: "linear-gradient(135deg, var(--brand), var(--brand-deep))",
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 15,
+            }}
+          >
+            🎓
           </div>
           {!collapsed && (
             <div style={{ lineHeight: 1.15 }}>
@@ -103,7 +119,8 @@ export default function Layout() {
           {NAV_GROUPS.map((g, gi) => (
             <div key={gi} style={{ marginBottom: 10 }}>
               {g.title && !collapsed && (
-                <div className="muted" style={{ fontSize: 10.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".06em", padding: "6px 10px 2px" }}>
+                <div className="muted" style={{ fontSize: 10.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".06em", padding: "6px 10px 2px", display: "flex", alignItems: "center", gap: 5 }}>
+                  {g.icon && <span style={{ fontSize: 11 }}>{g.icon}</span>}
                   {g.title}
                 </div>
               )}
@@ -117,8 +134,8 @@ export default function Layout() {
                     borderRadius: 7,
                     fontSize: 13.2,
                     fontWeight: isActive ? 650 : 500,
-                    color: isActive ? "#2a78d6" : "var(--text-primary)",
-                    background: isActive ? "color-mix(in srgb, #2a78d6 12%, transparent)" : "transparent",
+                    color: isActive ? "var(--brand)" : "var(--text-primary)",
+                    background: isActive ? "color-mix(in srgb, var(--brand) 12%, transparent)" : "transparent",
                     marginBottom: 1,
                     whiteSpace: collapsed ? "nowrap" : "normal",
                     overflow: "hidden",

@@ -111,7 +111,7 @@ function SerieHistoricaTab() {
                 key={o.value}
                 className="btn"
                 onClick={() => toggle(o.value)}
-                style={{ background: selecionados.includes(o.value) ? "#2a78d6" : undefined, color: selecionados.includes(o.value) ? "#fff" : undefined }}
+                style={{ background: selecionados.includes(o.value) ? "var(--brand)" : undefined, color: selecionados.includes(o.value) ? "#fff" : undefined }}
               >
                 {o.label}
               </button>
@@ -120,7 +120,7 @@ function SerieHistoricaTab() {
           {selecionados.length > 0 && (
             <div style={{ marginTop: 8, display: "flex", gap: 6, flexWrap: "wrap" }}>
               {selecionados.map((s) => (
-                <span key={s} className="badge" style={{ background: "color-mix(in srgb, #2a78d6 15%, transparent)", color: "#2a78d6" }}>
+                <span key={s} className="badge" style={{ background: "color-mix(in srgb, var(--brand) 15%, transparent)", color: "var(--brand)" }}>
                   {s} <span style={{ cursor: "pointer" }} onClick={() => toggle(s)}>✕</span>
                 </span>
               ))}
@@ -283,10 +283,10 @@ export default function Evolucao() {
       <h1 className="page-title">Evolução</h1>
       <p className="page-subtitle">Série histórica comparativa e evolução do IDEB entre 2023 e 2025.</p>
       <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
-        <button className="btn" onClick={() => setTab("serie")} style={{ background: tab === "serie" ? "#2a78d6" : undefined, color: tab === "serie" ? "#fff" : undefined }}>
+        <button className="btn" onClick={() => setTab("serie")} style={{ background: tab === "serie" ? "var(--brand)" : undefined, color: tab === "serie" ? "#fff" : undefined }}>
           Série Histórica
         </button>
-        <button className="btn" onClick={() => setTab("2325")} style={{ background: tab === "2325" ? "#2a78d6" : undefined, color: tab === "2325" ? "#fff" : undefined }}>
+        <button className="btn" onClick={() => setTab("2325")} style={{ background: tab === "2325" ? "var(--brand)" : undefined, color: tab === "2325" ? "#fff" : undefined }}>
           Evolução 2023 × 2025
         </button>
       </div>

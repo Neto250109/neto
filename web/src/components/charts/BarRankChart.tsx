@@ -1,6 +1,6 @@
 import type { EChartsOption } from "echarts";
 import Chart from "../Chart";
-import { tokens } from "../../lib/colors";
+import { tokens, brand } from "../../lib/colors";
 
 export default function BarRankChart({
   categorias,
@@ -20,6 +20,7 @@ export default function BarRankChart({
   valueFmt?: (v: number) => string;
 }) {
   const t = tokens();
+  const b = brand();
   const fmt = valueFmt ?? ((v: number) => v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
   const catAxis = {
     type: "category" as const,
@@ -51,7 +52,7 @@ export default function BarRankChart({
     series: [
       {
         type: "bar",
-        data: valores.map((v, i) => ({ value: v, itemStyle: { color: colorFn ? colorFn(v, i) : "#2a78d6", borderRadius: horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0] } })),
+        data: valores.map((v, i) => ({ value: v, itemStyle: { color: colorFn ? colorFn(v, i) : b.light, borderRadius: horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0] } })),
         barMaxWidth: 26,
       },
     ],

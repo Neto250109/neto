@@ -119,7 +119,7 @@ export default function VisaoGeral() {
       <div className="card" style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 20, flexWrap: "wrap" }}>
         <span className="pill-label">Etapa em foco:</span>
         {ETAPAS.map((e) => (
-          <button key={e} className="btn" onClick={() => setEtapa(e)} style={{ background: etapa === e ? "#2a78d6" : undefined, color: etapa === e ? "#fff" : undefined, borderColor: etapa === e ? "#2a78d6" : undefined }}>
+          <button key={e} className="btn" onClick={() => setEtapa(e)} style={{ background: etapa === e ? "var(--brand)" : undefined, color: etapa === e ? "#fff" : undefined, borderColor: etapa === e ? "var(--brand)" : undefined }}>
             {e}
           </button>
         ))}
@@ -127,7 +127,7 @@ export default function VisaoGeral() {
           Rede:
         </span>
         {REDES.map((r) => (
-          <button key={r} className="btn" onClick={() => setRede(r)} style={{ background: rede === r ? "#2a78d6" : undefined, color: rede === r ? "#fff" : undefined, borderColor: rede === r ? "#2a78d6" : undefined }}>
+          <button key={r} className="btn" onClick={() => setRede(r)} style={{ background: rede === r ? "var(--brand)" : undefined, color: rede === r ? "#fff" : undefined, borderColor: rede === r ? "var(--brand)" : undefined }}>
             {r}
           </button>
         ))}
@@ -135,7 +135,7 @@ export default function VisaoGeral() {
       </div>
 
       <div className="grid kpi-grid" style={{ marginBottom: 20 }}>
-        <KpiCard label={`IDEB ${etapa} 2025 (${rede})`} value={fmtNum(mediaAtual, 3)} sub={`${fmtInt(ideb2025.length)} municípios com dado`} accent="#2a78d6" />
+        <KpiCard label={`IDEB ${etapa} 2025 (${rede})`} value={fmtNum(mediaAtual, 3)} sub={`${fmtInt(ideb2025.length)} municípios com dado`} accent="var(--brand)" />
         <KpiCard label="Variação 2023 → 2025" value={fmtDelta(deltaAbs, 3)} deltaGood={deltaAbs !== null ? deltaAbs >= 0 : null} sub="pontos IDEB" />
         <KpiCard label="Variação percentual" value={deltaPct !== null ? fmtPct(deltaPct, 2) : "ND"} deltaGood={deltaPct !== null ? deltaPct >= 0 : null} />
         <KpiCard label="Municípios avaliados" value={fmtInt(ideb2025.length)} sub={`de ${fmtInt(redeRows.length)} no total`} />

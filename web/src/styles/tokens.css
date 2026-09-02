@@ -1,49 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap");
+
 :root {
   color-scheme: light;
-  --surface: #fcfcfb;
-  --page: #f9f9f7;
-  --text-primary: #0b0b0b;
-  --text-secondary: #52514e;
-  --muted: #898781;
-  --gridline: #e1e0d9;
-  --baseline: #c3c2b7;
-  --success-text: #006300;
-  --border: rgba(11, 11, 11, 0.1);
-  --card-shadow: 0 1px 2px rgba(11, 11, 11, 0.06), 0 1px 1px rgba(11, 11, 11, 0.04);
-  --radius: 10px;
-  --sidebar-w: 248px;
+  --surface: #ffffff;
+  --page: #f5f7fa;
+  --text-primary: #142434;
+  --text-secondary: #2b3d4f;
+  --muted: #738089;
+  --gridline: #e6ebf0;
+  --baseline: #c7d2d9;
+  --success-text: #0d7a52;
+  --border: rgba(20, 36, 52, 0.1);
+  --card-shadow: 0 1px 2px rgba(20, 36, 52, 0.06), 0 1px 1px rgba(20, 36, 52, 0.04);
+  --radius: 12px;
+  --sidebar-w: 252px;
   --topbar-h: 56px;
   --status-good: #0ca30c;
   --status-warning: #fab219;
   --status-serious: #ec835a;
   --status-critical: #d03b3b;
+  /* Identidade institucional (paleta territorial/educacional: verde + azul-petróleo) */
+  --brand: #18a589;
+  --brand-strong: #0f8570;
+  --brand-deep: #1b5674;
+  --brand-soft: #e3f4f0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --surface: #1a1a19;
-    --page: #0d0d0d;
-    --text-primary: #ffffff;
-    --text-secondary: #c3c2b7;
-    --muted: #898781;
-    --gridline: #2c2c2a;
-    --baseline: #383835;
-    --success-text: #0ca30c;
-    --border: rgba(255, 255, 255, 0.1);
+    --surface: #191d24;
+    --page: #10131a;
+    --text-primary: #f1f5f8;
+    --text-secondary: #c3ccd4;
+    --muted: #8b98a4;
+    --gridline: #2a2f38;
+    --baseline: #3a4149;
+    --success-text: #29c58a;
+    --border: rgba(241, 245, 248, 0.1);
+    --brand: #1dc9a6;
+    --brand-strong: #29e0ba;
+    --brand-deep: #309ad0;
+    --brand-soft: rgba(29, 201, 166, 0.14);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --surface: #1a1a19;
-  --page: #0d0d0d;
-  --text-primary: #ffffff;
-  --text-secondary: #c3c2b7;
-  --muted: #898781;
-  --gridline: #2c2c2a;
-  --baseline: #383835;
-  --success-text: #0ca30c;
-  --border: rgba(255, 255, 255, 0.1);
+  --surface: #191d24;
+  --page: #10131a;
+  --text-primary: #f1f5f8;
+  --text-secondary: #c3ccd4;
+  --muted: #8b98a4;
+  --gridline: #2a2f38;
+  --baseline: #3a4149;
+  --success-text: #29c58a;
+  --border: rgba(241, 245, 248, 0.1);
+  --brand: #1dc9a6;
+  --brand-strong: #29e0ba;
+  --brand-deep: #309ad0;
+  --brand-soft: rgba(29, 201, 166, 0.14);
 }
 
 * { box-sizing: border-box; }
@@ -52,7 +67,7 @@ body {
   margin: 0;
   background: var(--page);
   color: var(--text-primary);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
@@ -70,7 +85,7 @@ button { font-family: inherit; }
 .secondary { color: var(--text-secondary); }
 .tabular { font-variant-numeric: tabular-nums; }
 
-h1, h2, h3, h4 { margin: 0 0 4px; font-weight: 650; letter-spacing: -0.01em; }
+h1, h2, h3, h4 { margin: 0 0 4px; font-weight: 650; letter-spacing: -0.01em; font-family: "Space Grotesk", "DM Sans", sans-serif; }
 p { margin: 0; }
 
 .page-title { font-size: 22px; margin-bottom: 2px; }
@@ -83,7 +98,7 @@ p { margin: 0; }
 table { border-collapse: collapse; width: 100%; font-size: 13px; }
 th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--gridline); white-space: nowrap; }
 th { color: var(--text-secondary); font-weight: 600; position: sticky; top: 0; background: var(--surface); cursor: pointer; user-select: none; }
-tbody tr:hover { background: color-mix(in srgb, var(--text-primary) 4%, transparent); }
+tbody tr:hover { background: color-mix(in srgb, var(--brand) 6%, transparent); }
 
 .btn {
   border: 1px solid var(--border);
@@ -94,10 +109,10 @@ tbody tr:hover { background: color-mix(in srgb, var(--text-primary) 4%, transpar
   font-size: 13px;
   cursor: pointer;
 }
-.btn:hover { background: color-mix(in srgb, var(--text-primary) 6%, var(--surface)); }
-.btn-primary { background: #2a78d6; color: white; border-color: #2a78d6; }
+.btn:hover { background: color-mix(in srgb, var(--brand) 8%, var(--surface)); }
+.btn-primary { background: var(--brand); color: white; border-color: var(--brand); }
 
-select, input[type="text"], input[type="search"] {
+select, input[type="text"], input[type="search"], input[type="number"] {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text-primary);
