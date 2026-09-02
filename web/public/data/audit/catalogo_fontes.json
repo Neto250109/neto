@@ -1,0 +1,101 @@
+{
+  "Anos Iniciais": {
+    "arquivo_origem": "divulgacao_anos_iniciais_municipios_2025.xlsx",
+    "linhas_dados_lidas": 14517,
+    "registros_long": 1074258,
+    "municipios_distintos": 5569,
+    "redes_distintas": [
+      "Estadual",
+      "Federal",
+      "Municipal",
+      "Pública"
+    ],
+    "anos_distintos": [
+      2005,
+      2007,
+      2009,
+      2011,
+      2013,
+      2015,
+      2017,
+      2019,
+      2021,
+      2023,
+      2025
+    ],
+    "indicadores_distintos": [
+      "IDEB",
+      "Indicador de Rendimento",
+      "Meta IDEB",
+      "Nota Média Padronizada",
+      "Nota SAEB - Língua Portuguesa",
+      "Nota SAEB - Matemática",
+      "Taxa de Aprovação"
+    ],
+    "arquivo_saida": "processado/long_anos_iniciais.parquet"
+  },
+  "Anos Finais": {
+    "arquivo_origem": "divulgacao_anos_finais_municipios_2025.xlsx",
+    "linhas_dados_lidas": 14413,
+    "registros_long": 1066562,
+    "municipios_distintos": 5569,
+    "redes_distintas": [
+      "Estadual",
+      "Federal",
+      "Municipal",
+      "Pública"
+    ],
+    "anos_distintos": [
+      2005,
+      2007,
+      2009,
+      2011,
+      2013,
+      2015,
+      2017,
+      2019,
+      2021,
+      2023,
+      2025
+    ],
+    "indicadores_distintos": [
+      "IDEB",
+      "Indicador de Rendimento",
+      "Meta IDEB",
+      "Nota Média Padronizada",
+      "Nota SAEB - Língua Portuguesa",
+      "Nota SAEB - Matemática",
+      "Taxa de Aprovação"
+    ],
+    "arquivo_saida": "processado/long_anos_finais.parquet"
+  },
+  "Ensino Médio": {
+    "arquivo_origem": "divulgacao_ensino_medio_municipios_2025.xlsx",
+    "linhas_dados_lidas": 11752,
+    "registros_long": 376064,
+    "municipios_distintos": 5563,
+    "redes_distintas": [
+      "Estadual",
+      "Federal",
+      "Municipal",
+      "Pública"
+    ],
+    "anos_distintos": [
+      2017,
+      2019,
+      2021,
+      2023,
+      2025
+    ],
+    "indicadores_distintos": [
+      "IDEB",
+      "Indicador de Rendimento",
+      "Meta IDEB",
+      "Nota Média Padronizada",
+      "Nota SAEB - Língua Portuguesa",
+      "Nota SAEB - Matemática",
+      "Taxa de Aprovação"
+    ],
+    "arquivo_saida": "processado/long_ensino_medio.parquet"
+  }
+}

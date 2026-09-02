@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Fontes brutas do INEP (binários grandes, reproduzíveis via ETL) e artefatos intermediários
+dados/bruto/*.xlsx
+dados/processado/*.parquet
+
+# Frontend
+web/node_modules/
+web/dist/
+web/.vite/
+web/.netlify/
